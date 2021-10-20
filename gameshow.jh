@@ -1,0 +1,55 @@
+
+entity Participante {
+	carastroUsuario String, 
+    participanteNome String, 
+    participanteEmail String, 
+    participanteDataDeNascimento LocalDate
+}
+entity Questao {
+	questaoTitulo String, 
+    alternativaA String, 
+    alternativaB String, 
+    alternativaC String, 
+    alternativaD String, 
+    nivelIdade Integer, 
+    assunto Assunto,
+    alternativaCerta Alternativa
+}
+enum Assunto {
+	PORTUGUES, INGLES, MATEMATICA, CIENCIAS, HISTORIA, GEOGRAFIA, ATUALIDADES, GERAIS
+}
+enum Alternativa {
+A, B, C, D
+}
+entity Edicao { 
+	edicaoTitulo String, 
+    edicaoData LocalDate,
+}
+entity Resposta {
+	respostaData ZonedDateTime,
+    respostaAlternativa Alternativa,
+    respostaCerta Boolean
+}
+entity Play {
+	playData ZonedDateTime
+}
+relationship OneToMany {
+	Edicao{questao} to Questao,
+    Questao{resposta} to Resposta,
+    Participante to Resposta   
+    Play to Resposta,
+    Play to Participante
+}
+relationship OneToOne {
+	Edicao to Play
+}
+// Set pagination options
+paginate Questao, Edicao, Play with pagination
+// Use Data Transfer Objects (DTO)
+// dto * with mapstruct
+
+// Set service options to all except few
+service all with serviceImpl
+
+// Set an angular suffix
+// angularSuffix * with mySuffix
