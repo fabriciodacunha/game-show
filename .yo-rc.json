@@ -44,7 +44,9 @@
     "clientTheme": "none",
     "clientThemeVariant": "",
     "reactive": false,
-    "enableGradleEnterprise": false
+    "enableGradleEnterprise": false,
+    "entities": ["Participante", "Questao", "Edicao", "Resposta", "Play"],
+    "lastLiquibaseTimestamp": 1634694355000
   },
   "git-provider": "GitHub",
   "git-company": "fabriciodacunha",

@@ -1,0 +1,33 @@
+{
+  "gameShowApp": {
+    "questao": {
+      "home": {
+        "title": "Questaos",
+        "refreshListLabel": "Atualizar lista",
+        "createLabel": "Criar novo Questao",
+        "createOrEditLabel": "Criar ou editar Questao",
+        "notFound": "Nenhum Questao encontrado"
+      },
+      "created": "Um novo Questao foi criado com o identificador {{ param }}",
+      "updated": "Um Questao foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Questao foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Questao {{ id }}?"
+      },
+      "detail": {
+        "title": "Questao"
+      },
+      "id": "ID",
+      "questaoTitulo": "Questao Titulo",
+      "alternativaA": "Alternativa A",
+      "alternativaB": "Alternativa B",
+      "alternativaC": "Alternativa C",
+      "alternativaD": "Alternativa D",
+      "nivelIdade": "Nivel Idade",
+      "assunto": "Assunto",
+      "alternativaCerta": "Alternativa Certa",
+      "resposta": "Resposta",
+      "edicao": "Edicao"
+    }
+  }
+}

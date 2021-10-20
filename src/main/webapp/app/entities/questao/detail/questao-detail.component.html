@@ -1,0 +1,66 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="questao">
+      <h2 data-cy="questaoDetailsHeading"><span jhiTranslate="gameShowApp.questao.detail.title">Questao</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ questao.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="gameShowApp.questao.questaoTitulo">Questao Titulo</span></dt>
+        <dd>
+          <span>{{ questao.questaoTitulo }}</span>
+        </dd>
+        <dt><span jhiTranslate="gameShowApp.questao.alternativaA">Alternativa A</span></dt>
+        <dd>
+          <span>{{ questao.alternativaA }}</span>
+        </dd>
+        <dt><span jhiTranslate="gameShowApp.questao.alternativaB">Alternativa B</span></dt>
+        <dd>
+          <span>{{ questao.alternativaB }}</span>
+        </dd>
+        <dt><span jhiTranslate="gameShowApp.questao.alternativaC">Alternativa C</span></dt>
+        <dd>
+          <span>{{ questao.alternativaC }}</span>
+        </dd>
+        <dt><span jhiTranslate="gameShowApp.questao.alternativaD">Alternativa D</span></dt>
+        <dd>
+          <span>{{ questao.alternativaD }}</span>
+        </dd>
+        <dt><span jhiTranslate="gameShowApp.questao.nivelIdade">Nivel Idade</span></dt>
+        <dd>
+          <span>{{ questao.nivelIdade }}</span>
+        </dd>
+        <dt><span jhiTranslate="gameShowApp.questao.assunto">Assunto</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'gameShowApp.Assunto.' + questao.assunto }}">{{ questao.assunto }}</span>
+        </dd>
+        <dt><span jhiTranslate="gameShowApp.questao.alternativaCerta">Alternativa Certa</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'gameShowApp.Alternativa.' + questao.alternativaCerta }}">{{ questao.alternativaCerta }}</span>
+        </dd>
+        <dt><span jhiTranslate="gameShowApp.questao.edicao">Edicao</span></dt>
+        <dd>
+          <div *ngIf="questao.edicao">
+            <a [routerLink]="['/edicao', questao.edicao?.id, 'view']">{{ questao.edicao?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/questao', questao.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

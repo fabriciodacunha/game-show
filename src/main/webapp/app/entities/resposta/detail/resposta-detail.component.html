@@ -1,0 +1,58 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="resposta">
+      <h2 data-cy="respostaDetailsHeading"><span jhiTranslate="gameShowApp.resposta.detail.title">Resposta</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ resposta.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="gameShowApp.resposta.respostaData">Resposta Data</span></dt>
+        <dd>
+          <span>{{ resposta.respostaData | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="gameShowApp.resposta.respostaAlternativa">Resposta Alternativa</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'gameShowApp.Alternativa.' + resposta.respostaAlternativa }}">{{ resposta.respostaAlternativa }}</span>
+        </dd>
+        <dt><span jhiTranslate="gameShowApp.resposta.respostaCerta">Resposta Certa</span></dt>
+        <dd>
+          <span>{{ resposta.respostaCerta }}</span>
+        </dd>
+        <dt><span jhiTranslate="gameShowApp.resposta.questao">Questao</span></dt>
+        <dd>
+          <div *ngIf="resposta.questao">
+            <a [routerLink]="['/questao', resposta.questao?.id, 'view']">{{ resposta.questao?.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="gameShowApp.resposta.participante">Participante</span></dt>
+        <dd>
+          <div *ngIf="resposta.participante">
+            <a [routerLink]="['/participante', resposta.participante?.id, 'view']">{{ resposta.participante?.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="gameShowApp.resposta.play">Play</span></dt>
+        <dd>
+          <div *ngIf="resposta.play">
+            <a [routerLink]="['/play', resposta.play?.id, 'view']">{{ resposta.play?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/resposta', resposta.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

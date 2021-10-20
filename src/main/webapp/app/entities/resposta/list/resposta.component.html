@@ -1,0 +1,100 @@
+<div>
+  <h2 id="page-heading" data-cy="RespostaHeading">
+    <span jhiTranslate="gameShowApp.resposta.home.title">Respostas</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="loadAll()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="gameShowApp.resposta.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-resposta"
+        [routerLink]="['/resposta/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="gameShowApp.resposta.home.createLabel"> Create a new Resposta </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="respostas?.length === 0">
+    <span jhiTranslate="gameShowApp.resposta.home.notFound">No respostas found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="respostas && respostas.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr>
+          <th scope="col"><span jhiTranslate="global.field.id">ID</span></th>
+          <th scope="col"><span jhiTranslate="gameShowApp.resposta.respostaData">Resposta Data</span></th>
+          <th scope="col"><span jhiTranslate="gameShowApp.resposta.respostaAlternativa">Resposta Alternativa</span></th>
+          <th scope="col"><span jhiTranslate="gameShowApp.resposta.respostaCerta">Resposta Certa</span></th>
+          <th scope="col"><span jhiTranslate="gameShowApp.resposta.questao">Questao</span></th>
+          <th scope="col"><span jhiTranslate="gameShowApp.resposta.participante">Participante</span></th>
+          <th scope="col"><span jhiTranslate="gameShowApp.resposta.play">Play</span></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let resposta of respostas; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/resposta', resposta.id, 'view']">{{ resposta.id }}</a>
+          </td>
+          <td>{{ resposta.respostaData | formatMediumDatetime }}</td>
+          <td jhiTranslate="{{ 'gameShowApp.Alternativa.' + resposta.respostaAlternativa }}">{{ resposta.respostaAlternativa }}</td>
+          <td>{{ resposta.respostaCerta }}</td>
+          <td>
+            <div *ngIf="resposta.questao">
+              <a [routerLink]="['/questao', resposta.questao?.id, 'view']">{{ resposta.questao?.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="resposta.participante">
+              <a [routerLink]="['/participante', resposta.participante?.id, 'view']">{{ resposta.participante?.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="resposta.play">
+              <a [routerLink]="['/play', resposta.play?.id, 'view']">{{ resposta.play?.id }}</a>
+            </div>
+          </td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/resposta', resposta.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/resposta', resposta.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(resposta)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
