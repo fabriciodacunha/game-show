@@ -1,0 +1,29 @@
+{
+  "gameShowApp": {
+    "participante": {
+      "home": {
+        "title": "Participantes",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Participante",
+        "createOrEditLabel": "Create or edit a Participante",
+        "notFound": "No Participantes found"
+      },
+      "created": "A new Participante is created with identifier {{ param }}",
+      "updated": "A Participante is updated with identifier {{ param }}",
+      "deleted": "A Participante is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Participante {{ id }}?"
+      },
+      "detail": {
+        "title": "Participante"
+      },
+      "id": "ID",
+      "carastroUsuario": "Carastro Usuario",
+      "participanteNome": "Participante Nome",
+      "participanteEmail": "Participante Email",
+      "participanteDataDeNascimento": "Participante Data De Nascimento",
+      "resposta": "Resposta",
+      "play": "Play"
+    }
+  }
+}

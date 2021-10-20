@@ -1,0 +1,45 @@
+{
+  "name": "Participante",
+  "fields": [
+    {
+      "fieldName": "carastroUsuario",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "participanteNome",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "participanteEmail",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "participanteDataDeNascimento",
+      "fieldType": "LocalDate"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "resposta",
+      "otherEntityRelationshipName": "participante",
+      "relationshipName": "resposta"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "play",
+      "otherEntityRelationshipName": "participante",
+      "relationshipName": "play"
+    }
+  ],
+  "entityTableName": "participante",
+  "dto": "no",
+  "pagination": "no",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "changelogDate": "20211020014551"
+}

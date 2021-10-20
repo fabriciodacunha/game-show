@@ -1,0 +1,40 @@
+{
+  "name": "Play",
+  "fields": [
+    {
+      "fieldName": "playData",
+      "fieldType": "ZonedDateTime"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "resposta",
+      "otherEntityRelationshipName": "play",
+      "relationshipName": "resposta"
+    },
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "participante",
+      "otherEntityRelationshipName": "play",
+      "relationshipName": "participante"
+    },
+    {
+      "relationshipType": "one-to-one",
+      "otherEntityName": "edicao",
+      "otherEntityRelationshipName": "play",
+      "relationshipName": "edicao",
+      "ownerSide": false
+    }
+  ],
+  "entityTableName": "play",
+  "dto": "no",
+  "pagination": "pagination",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "changelogDate": "20211020014555"
+}

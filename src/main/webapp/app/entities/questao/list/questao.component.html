@@ -1,0 +1,134 @@
+<div>
+  <h2 id="page-heading" data-cy="QuestaoHeading">
+    <span jhiTranslate="gameShowApp.questao.home.title">Questaos</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="loadPage()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="gameShowApp.questao.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-questao"
+        [routerLink]="['/questao/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="gameShowApp.questao.home.createLabel"> Create a new Questao </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="questaos?.length === 0">
+    <span jhiTranslate="gameShowApp.questao.home.notFound">No questaos found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="questaos && questaos.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="loadPage()">
+          <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="questaoTitulo">
+            <span jhiTranslate="gameShowApp.questao.questaoTitulo">Questao Titulo</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="alternativaA">
+            <span jhiTranslate="gameShowApp.questao.alternativaA">Alternativa A</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="alternativaB">
+            <span jhiTranslate="gameShowApp.questao.alternativaB">Alternativa B</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="alternativaC">
+            <span jhiTranslate="gameShowApp.questao.alternativaC">Alternativa C</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="alternativaD">
+            <span jhiTranslate="gameShowApp.questao.alternativaD">Alternativa D</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="nivelIdade">
+            <span jhiTranslate="gameShowApp.questao.nivelIdade">Nivel Idade</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="assunto">
+            <span jhiTranslate="gameShowApp.questao.assunto">Assunto</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="alternativaCerta">
+            <span jhiTranslate="gameShowApp.questao.alternativaCerta">Alternativa Certa</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="edicao.id">
+            <span jhiTranslate="gameShowApp.questao.edicao">Edicao</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let questao of questaos; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/questao', questao.id, 'view']">{{ questao.id }}</a>
+          </td>
+          <td>{{ questao.questaoTitulo }}</td>
+          <td>{{ questao.alternativaA }}</td>
+          <td>{{ questao.alternativaB }}</td>
+          <td>{{ questao.alternativaC }}</td>
+          <td>{{ questao.alternativaD }}</td>
+          <td>{{ questao.nivelIdade }}</td>
+          <td jhiTranslate="{{ 'gameShowApp.Assunto.' + questao.assunto }}">{{ questao.assunto }}</td>
+          <td jhiTranslate="{{ 'gameShowApp.Alternativa.' + questao.alternativaCerta }}">{{ questao.alternativaCerta }}</td>
+          <td>
+            <div *ngIf="questao.edicao">
+              <a [routerLink]="['/edicao', questao.edicao?.id, 'view']">{{ questao.edicao?.id }}</a>
+            </div>
+          </td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/questao', questao.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/questao', questao.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(questao)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="questaos && questaos.length > 0">
+    <div class="row justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="row justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [(page)]="ngbPaginationPage"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="loadPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

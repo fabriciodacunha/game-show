@@ -1,0 +1,48 @@
+{
+  "name": "Resposta",
+  "fields": [
+    {
+      "fieldName": "respostaData",
+      "fieldType": "ZonedDateTime"
+    },
+    {
+      "fieldName": "respostaAlternativa",
+      "fieldType": "Alternativa",
+      "fieldValues": "A,B,C,D"
+    },
+    {
+      "fieldName": "respostaCerta",
+      "fieldType": "Boolean"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "questao",
+      "otherEntityRelationshipName": "resposta",
+      "relationshipName": "questao"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "participante",
+      "otherEntityRelationshipName": "resposta",
+      "relationshipName": "participante"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "play",
+      "otherEntityRelationshipName": "resposta",
+      "relationshipName": "play"
+    }
+  ],
+  "entityTableName": "resposta",
+  "dto": "no",
+  "pagination": "no",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "changelogDate": "20211020014554"
+}

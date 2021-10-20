@@ -1,0 +1,27 @@
+{
+  "gameShowApp": {
+    "edicao": {
+      "home": {
+        "title": "Edicaos",
+        "refreshListLabel": "Atualizar lista",
+        "createLabel": "Criar novo Edicao",
+        "createOrEditLabel": "Criar ou editar Edicao",
+        "notFound": "Nenhum Edicao encontrado"
+      },
+      "created": "Um novo Edicao foi criado com o identificador {{ param }}",
+      "updated": "Um Edicao foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Edicao foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Edicao {{ id }}?"
+      },
+      "detail": {
+        "title": "Edicao"
+      },
+      "id": "ID",
+      "edicaoTitulo": "Edicao Titulo",
+      "edicaoData": "Edicao Data",
+      "play": "Play",
+      "questao": "Questao"
+    }
+  }
+}

@@ -1,0 +1,147 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-questao-heading" data-cy="QuestaoCreateUpdateHeading" jhiTranslate="gameShowApp.questao.home.createOrEditLabel">
+        Create or edit a Questao
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="gameShowApp.questao.questaoTitulo" for="field_questaoTitulo"
+            >Questao Titulo</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="questaoTitulo"
+            id="field_questaoTitulo"
+            data-cy="questaoTitulo"
+            formControlName="questaoTitulo"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="gameShowApp.questao.alternativaA" for="field_alternativaA">Alternativa A</label>
+          <input
+            type="text"
+            class="form-control"
+            name="alternativaA"
+            id="field_alternativaA"
+            data-cy="alternativaA"
+            formControlName="alternativaA"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="gameShowApp.questao.alternativaB" for="field_alternativaB">Alternativa B</label>
+          <input
+            type="text"
+            class="form-control"
+            name="alternativaB"
+            id="field_alternativaB"
+            data-cy="alternativaB"
+            formControlName="alternativaB"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="gameShowApp.questao.alternativaC" for="field_alternativaC">Alternativa C</label>
+          <input
+            type="text"
+            class="form-control"
+            name="alternativaC"
+            id="field_alternativaC"
+            data-cy="alternativaC"
+            formControlName="alternativaC"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="gameShowApp.questao.alternativaD" for="field_alternativaD">Alternativa D</label>
+          <input
+            type="text"
+            class="form-control"
+            name="alternativaD"
+            id="field_alternativaD"
+            data-cy="alternativaD"
+            formControlName="alternativaD"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="gameShowApp.questao.nivelIdade" for="field_nivelIdade">Nivel Idade</label>
+          <input
+            type="number"
+            class="form-control"
+            name="nivelIdade"
+            id="field_nivelIdade"
+            data-cy="nivelIdade"
+            formControlName="nivelIdade"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="gameShowApp.questao.assunto" for="field_assunto">Assunto</label>
+          <select class="form-control" name="assunto" formControlName="assunto" id="field_assunto" data-cy="assunto">
+            <option [ngValue]="null">{{ 'gameShowApp.Assunto.null' | translate }}</option>
+            <option *ngFor="let assunto of assuntoValues" [value]="assunto">{{ 'gameShowApp.Assunto.' + assunto | translate }}</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="gameShowApp.questao.alternativaCerta" for="field_alternativaCerta"
+            >Alternativa Certa</label
+          >
+          <select
+            class="form-control"
+            name="alternativaCerta"
+            formControlName="alternativaCerta"
+            id="field_alternativaCerta"
+            data-cy="alternativaCerta"
+          >
+            <option [ngValue]="null">{{ 'gameShowApp.Alternativa.null' | translate }}</option>
+            <option *ngFor="let alternativa of alternativaValues" [value]="alternativa">
+              {{ 'gameShowApp.Alternativa.' + alternativa | translate }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="gameShowApp.questao.edicao" for="field_edicao">Edicao</label>
+          <select class="form-control" id="field_edicao" data-cy="edicao" name="edicao" formControlName="edicao">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="edicaoOption.id === editForm.get('edicao')!.value?.id ? editForm.get('edicao')!.value : edicaoOption"
+              *ngFor="let edicaoOption of edicaosSharedCollection; trackBy: trackEdicaoById"
+            >
+              {{ edicaoOption.id }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

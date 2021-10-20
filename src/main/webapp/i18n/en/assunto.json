@@ -1,0 +1,15 @@
+{
+  "gameShowApp": {
+    "Assunto": {
+      "null": "",
+      "PORTUGUES": "PORTUGUES",
+      "INGLES": "INGLES",
+      "MATEMATICA": "MATEMATICA",
+      "CIENCIAS": "CIENCIAS",
+      "HISTORIA": "HISTORIA",
+      "GEOGRAFIA": "GEOGRAFIA",
+      "ATUALIDADES": "ATUALIDADES",
+      "GERAIS": "GERAIS"
+    }
+  }
+}

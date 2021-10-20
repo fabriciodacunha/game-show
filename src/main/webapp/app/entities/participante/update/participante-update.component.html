@@ -1,0 +1,119 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-participante-heading"
+        data-cy="ParticipanteCreateUpdateHeading"
+        jhiTranslate="gameShowApp.participante.home.createOrEditLabel"
+      >
+        Create or edit a Participante
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="gameShowApp.participante.carastroUsuario" for="field_carastroUsuario"
+            >Carastro Usuario</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="carastroUsuario"
+            id="field_carastroUsuario"
+            data-cy="carastroUsuario"
+            formControlName="carastroUsuario"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="gameShowApp.participante.participanteNome" for="field_participanteNome"
+            >Participante Nome</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="participanteNome"
+            id="field_participanteNome"
+            data-cy="participanteNome"
+            formControlName="participanteNome"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="gameShowApp.participante.participanteEmail" for="field_participanteEmail"
+            >Participante Email</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="participanteEmail"
+            id="field_participanteEmail"
+            data-cy="participanteEmail"
+            formControlName="participanteEmail"
+          />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            jhiTranslate="gameShowApp.participante.participanteDataDeNascimento"
+            for="field_participanteDataDeNascimento"
+            >Participante Data De Nascimento</label
+          >
+          <div class="input-group">
+            <input
+              id="field_participanteDataDeNascimento"
+              data-cy="participanteDataDeNascimento"
+              type="text"
+              class="form-control"
+              name="participanteDataDeNascimento"
+              ngbDatepicker
+              #participanteDataDeNascimentoDp="ngbDatepicker"
+              formControlName="participanteDataDeNascimento"
+            />
+            <span class="input-group-append">
+              <button type="button" class="btn btn-secondary" (click)="participanteDataDeNascimentoDp.toggle()">
+                <fa-icon icon="calendar-alt"></fa-icon>
+              </button>
+            </span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="gameShowApp.participante.play" for="field_play">Play</label>
+          <select class="form-control" id="field_play" data-cy="play" name="play" formControlName="play">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="playOption.id === editForm.get('play')!.value?.id ? editForm.get('play')!.value : playOption"
+              *ngFor="let playOption of playsSharedCollection; trackBy: trackPlayById"
+            >
+              {{ playOption.id }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

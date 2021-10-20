@@ -1,0 +1,122 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-resposta-heading" data-cy="RespostaCreateUpdateHeading" jhiTranslate="gameShowApp.resposta.home.createOrEditLabel">
+        Create or edit a Resposta
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="gameShowApp.resposta.respostaData" for="field_respostaData">Resposta Data</label>
+          <div class="d-flex">
+            <input
+              id="field_respostaData"
+              data-cy="respostaData"
+              type="datetime-local"
+              class="form-control"
+              name="respostaData"
+              formControlName="respostaData"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="gameShowApp.resposta.respostaAlternativa" for="field_respostaAlternativa"
+            >Resposta Alternativa</label
+          >
+          <select
+            class="form-control"
+            name="respostaAlternativa"
+            formControlName="respostaAlternativa"
+            id="field_respostaAlternativa"
+            data-cy="respostaAlternativa"
+          >
+            <option [ngValue]="null">{{ 'gameShowApp.Alternativa.null' | translate }}</option>
+            <option *ngFor="let alternativa of alternativaValues" [value]="alternativa">
+              {{ 'gameShowApp.Alternativa.' + alternativa | translate }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="gameShowApp.resposta.respostaCerta" for="field_respostaCerta"
+            >Resposta Certa</label
+          >
+          <input
+            type="checkbox"
+            class="form-check"
+            name="respostaCerta"
+            id="field_respostaCerta"
+            data-cy="respostaCerta"
+            formControlName="respostaCerta"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="gameShowApp.resposta.questao" for="field_questao">Questao</label>
+          <select class="form-control" id="field_questao" data-cy="questao" name="questao" formControlName="questao">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="questaoOption.id === editForm.get('questao')!.value?.id ? editForm.get('questao')!.value : questaoOption"
+              *ngFor="let questaoOption of questaosSharedCollection; trackBy: trackQuestaoById"
+            >
+              {{ questaoOption.id }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="gameShowApp.resposta.participante" for="field_participante">Participante</label>
+          <select class="form-control" id="field_participante" data-cy="participante" name="participante" formControlName="participante">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="
+                participanteOption.id === editForm.get('participante')!.value?.id ? editForm.get('participante')!.value : participanteOption
+              "
+              *ngFor="let participanteOption of participantesSharedCollection; trackBy: trackParticipanteById"
+            >
+              {{ participanteOption.id }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="gameShowApp.resposta.play" for="field_play">Play</label>
+          <select class="form-control" id="field_play" data-cy="play" name="play" formControlName="play">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="playOption.id === editForm.get('play')!.value?.id ? editForm.get('play')!.value : playOption"
+              *ngFor="let playOption of playsSharedCollection; trackBy: trackPlayById"
+            >
+              {{ playOption.id }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

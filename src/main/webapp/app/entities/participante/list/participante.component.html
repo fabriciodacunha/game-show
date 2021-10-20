@@ -1,0 +1,92 @@
+<div>
+  <h2 id="page-heading" data-cy="ParticipanteHeading">
+    <span jhiTranslate="gameShowApp.participante.home.title">Participantes</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="loadAll()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="gameShowApp.participante.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-participante"
+        [routerLink]="['/participante/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="gameShowApp.participante.home.createLabel"> Create a new Participante </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="participantes?.length === 0">
+    <span jhiTranslate="gameShowApp.participante.home.notFound">No participantes found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="participantes && participantes.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr>
+          <th scope="col"><span jhiTranslate="global.field.id">ID</span></th>
+          <th scope="col"><span jhiTranslate="gameShowApp.participante.carastroUsuario">Carastro Usuario</span></th>
+          <th scope="col"><span jhiTranslate="gameShowApp.participante.participanteNome">Participante Nome</span></th>
+          <th scope="col"><span jhiTranslate="gameShowApp.participante.participanteEmail">Participante Email</span></th>
+          <th scope="col">
+            <span jhiTranslate="gameShowApp.participante.participanteDataDeNascimento">Participante Data De Nascimento</span>
+          </th>
+          <th scope="col"><span jhiTranslate="gameShowApp.participante.play">Play</span></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let participante of participantes; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/participante', participante.id, 'view']">{{ participante.id }}</a>
+          </td>
+          <td>{{ participante.carastroUsuario }}</td>
+          <td>{{ participante.participanteNome }}</td>
+          <td>{{ participante.participanteEmail }}</td>
+          <td>{{ participante.participanteDataDeNascimento | formatMediumDate }}</td>
+          <td>
+            <div *ngIf="participante.play">
+              <a [routerLink]="['/play', participante.play?.id, 'view']">{{ participante.play?.id }}</a>
+            </div>
+          </td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/participante', participante.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/participante', participante.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(participante)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

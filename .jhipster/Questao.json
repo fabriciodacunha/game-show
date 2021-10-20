@@ -1,0 +1,63 @@
+{
+  "name": "Questao",
+  "fields": [
+    {
+      "fieldName": "questaoTitulo",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "alternativaA",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "alternativaB",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "alternativaC",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "alternativaD",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "nivelIdade",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "assunto",
+      "fieldType": "Assunto",
+      "fieldValues": "PORTUGUES,INGLES,MATEMATICA,CIENCIAS,HISTORIA,GEOGRAFIA,ATUALIDADES,GERAIS"
+    },
+    {
+      "fieldName": "alternativaCerta",
+      "fieldType": "Alternativa",
+      "fieldValues": "A,B,C,D"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "resposta",
+      "otherEntityRelationshipName": "questao",
+      "relationshipName": "resposta"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "edicao",
+      "otherEntityRelationshipName": "questao",
+      "relationshipName": "edicao"
+    }
+  ],
+  "entityTableName": "questao",
+  "dto": "no",
+  "pagination": "pagination",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "changelogDate": "20211020014552"
+}

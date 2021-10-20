@@ -1,0 +1,50 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="participante">
+      <h2 data-cy="participanteDetailsHeading"><span jhiTranslate="gameShowApp.participante.detail.title">Participante</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ participante.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="gameShowApp.participante.carastroUsuario">Carastro Usuario</span></dt>
+        <dd>
+          <span>{{ participante.carastroUsuario }}</span>
+        </dd>
+        <dt><span jhiTranslate="gameShowApp.participante.participanteNome">Participante Nome</span></dt>
+        <dd>
+          <span>{{ participante.participanteNome }}</span>
+        </dd>
+        <dt><span jhiTranslate="gameShowApp.participante.participanteEmail">Participante Email</span></dt>
+        <dd>
+          <span>{{ participante.participanteEmail }}</span>
+        </dd>
+        <dt><span jhiTranslate="gameShowApp.participante.participanteDataDeNascimento">Participante Data De Nascimento</span></dt>
+        <dd>
+          <span>{{ participante.participanteDataDeNascimento | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="gameShowApp.participante.play">Play</span></dt>
+        <dd>
+          <div *ngIf="participante.play">
+            <a [routerLink]="['/play', participante.play?.id, 'view']">{{ participante.play?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/participante', participante.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

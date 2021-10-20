@@ -1,0 +1,27 @@
+{
+  "gameShowApp": {
+    "play": {
+      "home": {
+        "title": "Plays",
+        "refreshListLabel": "Atualizar lista",
+        "createLabel": "Criar novo Play",
+        "createOrEditLabel": "Criar ou editar Play",
+        "notFound": "Nenhum Play encontrado"
+      },
+      "created": "Um novo Play foi criado com o identificador {{ param }}",
+      "updated": "Um Play foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Play foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Play {{ id }}?"
+      },
+      "detail": {
+        "title": "Play"
+      },
+      "id": "ID",
+      "playData": "Play Data",
+      "resposta": "Resposta",
+      "participante": "Participante",
+      "edicao": "Edicao"
+    }
+  }
+}

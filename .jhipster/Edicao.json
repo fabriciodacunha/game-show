@@ -1,0 +1,38 @@
+{
+  "name": "Edicao",
+  "fields": [
+    {
+      "fieldName": "edicaoTitulo",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "edicaoData",
+      "fieldType": "LocalDate"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-one",
+      "otherEntityName": "play",
+      "otherEntityRelationshipName": "edicao",
+      "relationshipName": "play",
+      "ownerSide": true
+    },
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "questao",
+      "otherEntityRelationshipName": "edicao",
+      "relationshipName": "questao"
+    }
+  ],
+  "entityTableName": "edicao",
+  "dto": "no",
+  "pagination": "pagination",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "changelogDate": "20211020014553"
+}
